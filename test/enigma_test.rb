@@ -65,4 +65,10 @@ class EnigmaTest < MiniTest::Test
     assert_equal expected, enigma.final_shifts
   end
 
+  def test_encrypt
+    enigma = Enigma.new
+
+    enigma.encrypt("sheryl", "46531", "6400")
+  end
+
 end
