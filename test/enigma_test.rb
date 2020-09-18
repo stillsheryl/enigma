@@ -24,4 +24,10 @@ class EnigmaTest < MiniTest::Test
     assert_equal "180920", enigma.todays_date_to_string
   end
 
+  def test_calculate_offset_from_date
+    enigma = Enigma.new
+
+    assert_equal 2400, calculate_offset_from_date("080884")
+  end
+
 end
