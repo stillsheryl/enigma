@@ -27,7 +27,19 @@ class EnigmaTest < MiniTest::Test
   def test_calculate_offset_from_date
     enigma = Enigma.new
 
-    assert_equal 2400, calculate_offset_from_date("080884")
+    assert_equal 2400, enigma.calculate_offset_from_date("080820")
+  end
+
+  def test_calculate_final_shifts
+    enigma = Enigma.new
+
+    expected = {
+      A: 6,
+      B: 49,
+      C: 52,
+      D: 23
+    }
+    assert_equal expected, enigma.final_shifts
   end
 
 end

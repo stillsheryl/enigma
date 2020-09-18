@@ -11,4 +11,9 @@ class Enigma
     date.strftime("%d%m%y")
   end
 
+  def calculate_offset_from_date(date)
+    date = (date.to_i ** 2).to_s
+    date[-4..-1].to_i
+  end
+
 end
