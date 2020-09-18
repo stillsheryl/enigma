@@ -17,6 +17,12 @@ class EnigmaTest < MiniTest::Test
     assert_equal "04523", enigma.generate_random_key
   end
 
+  def test_key_shift
+    enigma = Enigma.new
+
+    assert_equal [04, 45, 52, 23], enigma.key_shift("04523")
+  end
+
   def test_todays_date_to_string
     enigma = Enigma.new
     Date.stubs(:today).returns(Date.new(2020,9,18))
