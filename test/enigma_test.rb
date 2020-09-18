@@ -3,10 +3,12 @@ require 'mocha/minitest'
 
 class EnigmaTest < MiniTest::Test
 
-  def test_it_exists
+  def test_it_exists_and_has_attributes
     enigma = Enigma.new
 
     assert_instance_of Enigma, enigma
+    assert_equal ({}), enigma.key_shifts
+    assert_equal ({}), enigma.date_offset
   end
 
   def test_generate_random_key
@@ -20,7 +22,13 @@ class EnigmaTest < MiniTest::Test
   def test_key_shift
     enigma = Enigma.new
 
-    assert_equal [04, 45, 52, 23], enigma.key_shift("04523")
+    expected = {
+      A: 4,
+      B: 45,
+      C: 52,
+      D: 23
+    }
+    assert_equal expected, enigma.key_shift("04523")
   end
 
   def test_todays_date_to_string
@@ -33,11 +41,20 @@ class EnigmaTest < MiniTest::Test
   def test_calculate_offset_from_date
     enigma = Enigma.new
 
-    assert_equal 2400, enigma.calculate_offset_from_date("080820")
+    expected = {
+      A: 2,
+      B: 4,
+      C: 0,
+      D: 0
+    }
+    assert_equal expected, enigma.calculate_offset_from_date("080820")
   end
 
   def test_calculate_final_shifts
     enigma = Enigma.new
+    enigma.generate_random_key
+    enigma.key_shift("04523")
+    enigma.calculate_offset_from_date("080820")
 
     expected = {
       A: 6,
