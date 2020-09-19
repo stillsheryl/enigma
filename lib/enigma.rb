@@ -1,4 +1,5 @@
 require 'date'
+require_relative 'key_generator.rb'
 
 class Enigma
 

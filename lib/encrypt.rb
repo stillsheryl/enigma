@@ -1,15 +1,15 @@
 require_relative 'enigma.rb'
 
-message = File.open(ARGV[0], "r")
+handle = File.open(ARGV[0], "r")
 
-incoming_message = message.read
+incoming_message = handle.read
 
-message.close
+handle.close
 
-translated = enigma.encrypt(message, key = generate_random_key, date =  todays_date_to_string)
+translated = enigma.encrypt(incoming_message)
 
 writer = File.open(ARGV[1], "w")
 
-writer.write()
+writer.write "Created 'encrypted.txt' with the key #{translated[:key]} and date #{translated[:date]}"
 
 writer.close
