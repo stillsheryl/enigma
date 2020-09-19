@@ -21,13 +21,24 @@ class Enigma
     encryption_info = {}
     key_value = KeyGenerator.new(key, date)
     offset_alphabet = key_value.generate_key(key, date)
-    keys = key_value.final_shifts_array
     spaced_message = message.downcase.split("")
     encrypted_message = []
     spaced_message.each.with_index(0) do |letter, index|
       encrypted_message << offset_alphabet[index % 4][find_letter_index(letter)]
     end
     encryption_info = {:encryption => encrypted_message.join, :key => key, :date => date}
+  end
+
+  def decrypt(ciphertext, key, date = todays_date_to_string)
+    decryption_info = {}
+    key_value = KeyGenerator.new(key, date)
+    offset_alphabet = key_value.generate_decrypt_key(key, date)
+    spaced_message = ciphertext.downcase.split("")
+    decrypted_message = []
+    spaced_message.each.with_index(0) do |letter, index|
+      decrypted_message << offset_alphabet[index % 4][find_letter_index(letter)]
+    end
+    decryption_info = {:decryption => decrypted_message.join, :key => key, :date => date}
   end
 
 end

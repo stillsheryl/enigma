@@ -54,4 +54,14 @@ class KeyGenerator
     alphabets_for_encoding(final_shifts_array)
   end
 
+  def generate_decrypt_key(key, date)
+    key_shift(key)
+    calculate_offset_from_date(date)
+    final_shifts
+    negative_shifts = final_shifts_array.map do |shift|
+      shift * -1
+    end
+    alphabets_for_encoding(negative_shifts)
+  end
+
 end
