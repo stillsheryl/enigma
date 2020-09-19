@@ -56,4 +56,6 @@ class Enigma
     [@final_shifts[:A], @final_shifts[:B], @final_shifts[:C], @final_shifts[:D]]
   end
 
+  
+
 end
