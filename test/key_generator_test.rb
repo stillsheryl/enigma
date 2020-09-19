@@ -50,4 +50,29 @@ class KeyGeneratorTest < MiniTest::Test
     assert_equal expected, key_generator.calculate_offset_from_date("080820")
   end
 
+  def test_calculate_final_shifts
+    enigma = Enigma.new
+    enigma.generate_random_key
+    enigma.key_shift("04523")
+    enigma.calculate_offset_from_date("080820")
+
+    expected = {
+      A: 6,
+      B: 49,
+      C: 52,
+      D: 23
+    }
+    assert_equal expected, enigma.final_shifts
+  end
+
+  def test_final_shifts_array
+    enigma = Enigma.new
+    enigma.generate_random_key
+    enigma.key_shift("04523")
+    enigma.calculate_offset_from_date("080820")
+    enigma.final_shifts
+
+    assert_equal [6, 49, 52, 23], enigma.final_shifts_array
+  end
+
 end
