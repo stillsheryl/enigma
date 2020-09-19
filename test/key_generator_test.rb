@@ -91,7 +91,7 @@ class KeyGeneratorTest < MiniTest::Test
   def test_generate_key
     key_generator = KeyGenerator.new("04523", "080820")
 
-    assert_equal [6, 49, 52, 23], key_generator.generate_key
+    assert_equal [6, 49, 52, 23], key_generator.generate_key("04523", "080820")
   end
 
 end

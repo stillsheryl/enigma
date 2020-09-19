@@ -1,3 +1,5 @@
+require 'date'
+
 class KeyGenerator
   attr_reader :key, :date, :key_shifts, :date_offset
   def initialize(key = generate_random_key, date = todays_date_to_string)
@@ -54,6 +56,13 @@ class KeyGenerator
 
   def alphabets_for_encoding(final_shifts_array)
     [alphabet(final_shifts_array[0]), alphabet(final_shifts_array[1]), alphabet(final_shifts_array[2]), alphabet(final_shifts_array[3])]
+  end
+
+  def generate_key(key, date)
+    key_shift(key)
+    calculate_offset_from_date(date)
+    final_shifts
+    alphabets_for_encoding(final_shifts_array)
   end
 
 end
