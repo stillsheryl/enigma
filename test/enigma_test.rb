@@ -24,4 +24,11 @@ class EnigmaTest < MiniTest::Test
     assert_equal "180920", enigma.todays_date_to_string
   end
 
+  def test_encrypt
+    enigma = Enigma.new
+
+    assert_equal "yccndg", enigma.encrypt("sheryl", "04523", "080820")
+    assert_equal "keder ohulw", enigma.encrypt("hello world", "02715", "040895")
+  end
+
 end
