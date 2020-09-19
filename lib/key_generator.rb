@@ -1,22 +1,13 @@
-require 'date'
+# require 'date'
 
 class KeyGenerator
   attr_reader :key, :date, :key_shifts, :date_offset
-  def initialize(key = generate_random_key, date = todays_date_to_string)
+  def initialize(key, date)
     @key = key
     @date = date
     @key_shifts = {}
     @date_offset = {}
     @final_shifts = {}
-  end
-
-  def generate_random_key
-    "%05d" % rand(99999)
-  end
-
-  def todays_date_to_string
-    date = Date.today
-    date.strftime("%d%m%y")
   end
 
   def key_shift(key)
