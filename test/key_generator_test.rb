@@ -1,4 +1,5 @@
 require_relative 'test_helper'
+require 'mocha/minitest'
 
 class KeyGeneratorTest < MiniTest::Test
 
@@ -8,6 +9,21 @@ class KeyGeneratorTest < MiniTest::Test
     assert_instance_of KeyGenerator, key_generator
     assert_equal "04523", key_generator.key
     assert_equal "080820", key_generator.date
+  end
+
+  def test_generate_random_key
+    key_generator = KeyGenerator.new()
+
+    key_generator.stubs(:rand).returns(4523)
+
+    assert_equal "04523", key_generator.generate_random_key
+  end
+
+  def test_todays_date_to_string
+    key_generator = KeyGenerator.new()
+    Date.stubs(:today).returns(Date.new(2020,9,18))
+
+    assert_equal "180920", key_generator.todays_date_to_string
   end
 
 end
