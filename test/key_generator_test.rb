@@ -38,4 +38,16 @@ class KeyGeneratorTest < MiniTest::Test
     assert_equal expected, key_generator.key_shift("04523")
   end
 
+  def test_calculate_offset_from_date
+  key_generator = KeyGenerator.new("04523", "080820")
+
+    expected = {
+      A: 2,
+      B: 4,
+      C: 0,
+      D: 0
+    }
+    assert_equal expected, key_generator.calculate_offset_from_date("080820")
+  end
+
 end

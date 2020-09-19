@@ -11,20 +11,6 @@ class EnigmaTest < MiniTest::Test
     assert_equal ({}), enigma.date_offset
   end
 
-  
-
-  def test_calculate_offset_from_date
-    enigma = Enigma.new
-
-    expected = {
-      A: 2,
-      B: 4,
-      C: 0,
-      D: 0
-    }
-    assert_equal expected, enigma.calculate_offset_from_date("080820")
-  end
-
   def test_calculate_final_shifts
     enigma = Enigma.new
     enigma.generate_random_key
