@@ -20,15 +20,12 @@ class Enigma
       key_value = KeyGenerator.new(key, date)
       offset_alphabet = key_value.generate_key(key, date)
       keys = key_value.final_shifts_array
-      spaced_message = message.downcase.chars.each_slice(4).map(&:join)
-      message = []
+      spaced_message = message.downcase.split("")
+      encrypted_message = []
       spaced_message.each.with_index(0) do |letter, index|
-        message << offset_alphabet[0][find_letter_index(letter[0])] if !letter[0].nil?
-        message << offset_alphabet[1][find_letter_index(letter[1])] if !letter[1].nil?
-        message << offset_alphabet[2][find_letter_index(letter[2])] if !letter[2].nil?
-        message << offset_alphabet[3][find_letter_index(letter[3])] if !letter[3].nil?
+        encrypted_message << offset_alphabet[index % 4][find_letter_index(letter)]
       end
-      message.join
+      encrypted_message.join
     end
 
 end
