@@ -17,17 +17,7 @@ class Enigma
 
 
 
-  def final_shifts
-      @final_shifts[:A] = @key_shifts[:A] + @date_offset[:A]
-      @final_shifts[:B] = @key_shifts[:B] + @date_offset[:B]
-      @final_shifts[:C] = @key_shifts[:C] + @date_offset[:C]
-      @final_shifts[:D] = @key_shifts[:D] + @date_offset[:D]
-    @final_shifts
-  end
-
-  def final_shifts_array
-    [@final_shifts[:A], @final_shifts[:B], @final_shifts[:C], @final_shifts[:D]]
-  end
+  
 
 
 
