@@ -1,5 +1,3 @@
-# require 'date'
-
 class KeyGenerator
   attr_reader :key, :date, :key_shifts, :date_offset
   def initialize(key, date)
