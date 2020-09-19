@@ -1,24 +1,14 @@
 require 'date'
 
 class Enigma
-  def initialize
 
+  def generate_random_key
+    "%05d" % rand(99999)
   end
 
-  def alphabet(shift_by)
-    alphabet = ("a".."z").to_a << " "
-    alphabet.rotate(shift_by)
+  def todays_date_to_string
+    date = Date.today
+    date.strftime("%d%m%y")
   end
-
-  def alphabets_for_encoding(final_shifts_array)
-    [alphabet(final_shifts_array[0]), alphabet(final_shifts_array[1]), alphabet(final_shifts_array[2]), alphabet(final_shifts_array[3])]
-  end
-
-
-
-
-  
-
-
 
 end
