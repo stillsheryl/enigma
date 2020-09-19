@@ -13,6 +13,10 @@ class Enigma
     alphabet.rotate(shift_by)
   end
 
+  def alphabets_for_encoding(final_shifts_array)
+    [alphabet(final_shifts_array[0]), alphabet(final_shifts_array[1]), alphabet(final_shifts_array[2]), alphabet(final_shifts_array[3])]
+  end
+
   def generate_random_key
     "%05d" % rand(99999)
   end
@@ -46,6 +50,10 @@ class Enigma
       @final_shifts[:C] = @key_shifts[:C] + @date_offset[:C]
       @final_shifts[:D] = @key_shifts[:D] + @date_offset[:D]
     @final_shifts
+  end
+
+  def final_shifts_array
+    [@final_shifts[:A], @final_shifts[:B], @final_shifts[:C], @final_shifts[:D]]
   end
 
 end
