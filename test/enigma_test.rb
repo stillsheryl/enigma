@@ -32,7 +32,7 @@ class EnigmaTest < MiniTest::Test
               key: "04523",
               date: "080820"
             }
-    assert_equal "yccndg", enigma.encrypt("sheryl", "04523", "080820")
+    assert_equal expected, enigma.encrypt("sheryl", "04523", "080820")
 
     expected2 = {
               encryption: "keder ohulw",
