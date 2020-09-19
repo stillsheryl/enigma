@@ -31,4 +31,11 @@ class EnigmaTest < MiniTest::Test
     assert_equal "keder ohulw", enigma.encrypt("hello world", "02715", "040895")
   end
 
+  def test_decrypt
+    enigma = Enigma.new
+
+    assert_equal "sheryl", enigma.decrypt("yccndg", "04523", "080820")
+    assert_equal "hello world", enigma.decrypt("keder ohulw", "02715", "040895")
+  end
+
 end
