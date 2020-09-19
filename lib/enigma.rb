@@ -5,6 +5,12 @@ class Enigma
   def initialize
     @key_shifts = {}
     @date_offset = {}
+    @final_shifts = {}
+  end
+
+  def alphabet(shift_by)
+    alphabet = ("a".."z").to_a << " "
+    alphabet.rotate(shift_by)
   end
 
   def generate_random_key
@@ -35,12 +41,11 @@ class Enigma
   end
 
   def final_shifts
-    final_shifts = {}
-      final_shifts[:A] = @key_shifts[:A] + @date_offset[:A]
-      final_shifts[:B] = @key_shifts[:B] + @date_offset[:B]
-      final_shifts[:C] = @key_shifts[:C] + @date_offset[:C]
-      final_shifts[:D] = @key_shifts[:D] + @date_offset[:D]
-    final_shifts
+      @final_shifts[:A] = @key_shifts[:A] + @date_offset[:A]
+      @final_shifts[:B] = @key_shifts[:B] + @date_offset[:B]
+      @final_shifts[:C] = @key_shifts[:C] + @date_offset[:C]
+      @final_shifts[:D] = @key_shifts[:D] + @date_offset[:D]
+    @final_shifts
   end
 
 end
