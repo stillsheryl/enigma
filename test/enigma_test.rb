@@ -62,13 +62,12 @@ class EnigmaTest < MiniTest::Test
       C: 52,
       D: 23
     }
-    assert_equal expected, enigma.final_shifts
   end
 
-  def test_encrypt
+  def test_alphabet
     enigma = Enigma.new
 
-    enigma.encrypt("sheryl", "46531", "6400")
+    assert_equal ["g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " ", "a", "b", "c", "d", "e", "f"], enigma.alphabet(6)
   end
 
 end
