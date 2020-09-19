@@ -26,4 +26,16 @@ class KeyGeneratorTest < MiniTest::Test
     assert_equal "180920", key_generator.todays_date_to_string
   end
 
+  def test_key_shift
+    key_generator = KeyGenerator.new("04523", "080820")
+
+    expected = {
+      A: 4,
+      B: 45,
+      C: 52,
+      D: 23
+    }
+    assert_equal expected, key_generator.key_shift("04523")
+  end
+
 end

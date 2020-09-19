@@ -11,20 +11,7 @@ class EnigmaTest < MiniTest::Test
     assert_equal ({}), enigma.date_offset
   end
 
-
-  def test_key_shift
-    enigma = Enigma.new
-
-    expected = {
-      A: 4,
-      B: 45,
-      C: 52,
-      D: 23
-    }
-    assert_equal expected, enigma.key_shift("04523")
-  end
-
-
+  
 
   def test_calculate_offset_from_date
     enigma = Enigma.new
