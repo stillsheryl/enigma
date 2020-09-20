@@ -3,39 +3,26 @@ class KeyGenerator
   def initialize(key, date)
     @key = key
     @date = date
-    @key_shifts = {}
-    @date_offset = {}
-    @final_shifts = {}
   end
 
   def key_shift(key)
-    @key_shifts[:A] = key[0..1].to_i
-    @key_shifts[:B] = key[1..2].to_i
-    @key_shifts[:C] = key[2..3].to_i
-    @key_shifts[:D] = key[3..4].to_i
-    @key_shifts
+    key_shifts = [key[0..1].to_i, key[1..2].to_i, key[2..3].to_i, key[3..4].to_i]
   end
 
   def calculate_offset_from_date(date)
     date_squared = (date.to_i ** 2).to_s
     last_four = ("%04d" % date_squared[-4..-1].to_i).to_s
-    @date_offset[:A] = last_four[0].to_i
-    @date_offset[:B] = last_four[1].to_i
-    @date_offset[:C] = last_four[2].to_i
-    @date_offset[:D] = last_four[3].to_i
-    @date_offset
+    date_offset = [last_four[0].to_i, last_four[1].to_i, last_four[2].to_i, last_four[3].to_i]
   end
 
-  def final_shifts
-      @final_shifts[:A] = @key_shifts[:A] + @date_offset[:A]
-      @final_shifts[:B] = @key_shifts[:B] + @date_offset[:B]
-      @final_shifts[:C] = @key_shifts[:C] + @date_offset[:C]
-      @final_shifts[:D] = @key_shifts[:D] + @date_offset[:D]
-    @final_shifts
-  end
-
-  def final_shifts_array
-    [@final_shifts[:A], @final_shifts[:B], @final_shifts[:C], @final_shifts[:D]]
+  def final_shifts(key, date)
+    key_shift = key_shift(key)
+    date_offset = calculate_offset_from_date(date)
+    a = key_shift[0] + date_offset[0]
+    b = key_shift[1] + date_offset[1]
+    c = key_shift[2] + date_offset[2]
+    d = key_shift[3] + date_offset[3]
+    final_shifts = [a, b, c, d]
   end
 
   def alphabet(shift_by)
@@ -43,25 +30,29 @@ class KeyGenerator
     alphabet.rotate(shift_by)
   end
 
-  def alphabets_for_encoding(final_shifts_array)
-    [alphabet(final_shifts_array[0]), alphabet(final_shifts_array[1]), alphabet(final_shifts_array[2]), alphabet(final_shifts_array[3])]
+  def alphabets_for_encoding(key, date)
+    final_shift = final_shifts(key, date)
+    [alphabet(final_shift[0]), alphabet(final_shift[1]), alphabet(final_shift[2]), alphabet(final_shift[3])]
   end
 
-  def generate_key(key, date)
+  def alphabets_for_decoding(key, date)
+    final_shift = final_shifts(key, date)
+    negative_shift = final_shift.map do |shift|
+      shift * -1
+    end
+    [alphabet(negative_shift[0]), alphabet(negative_shift[1]), alphabet(negative_shift[2]), alphabet(negative_shift[3])]
+  end
+
+  def generate_encrypt_key(key, date)
     key_shift(key)
     calculate_offset_from_date(date)
-    final_shifts
-    alphabets_for_encoding(final_shifts_array)
+    alphabets_for_encoding(key, date)
   end
 
   def generate_decrypt_key(key, date)
     key_shift(key)
     calculate_offset_from_date(date)
-    final_shifts
-    negative_shifts = final_shifts_array.map do |shift|
-      shift * -1
-    end
-    alphabets_for_encoding(negative_shifts)
+    alphabets_for_decoding(key, date)
   end
 
 end
