@@ -10,4 +10,10 @@ class EncryptKey < KeyGenerator
     [alphabet(final_shift[0]), alphabet(final_shift[1]), alphabet(final_shift[2]), alphabet(final_shift[3])]
   end
 
+  def generate_encrypt_key(key, date)
+    key_shift(key)
+    calculate_offset_from_date(date)
+    alphabets_for_encoding(key, date)
+  end
+
 end
