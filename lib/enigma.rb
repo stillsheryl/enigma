@@ -2,7 +2,7 @@ require 'date'
 require_relative 'key_generator.rb'
 
 class Enigma
-
+  attr_reader :alphabet
   def initialize
     @alphabet = ("a".."z").to_a << " "
   end

@@ -3,10 +3,11 @@ require 'mocha/minitest'
 
 class EnigmaTest < MiniTest::Test
 
-  def test_it_exists
+  def test_it_exists_and_has_attributes
     enigma = Enigma.new
 
     assert_instance_of Enigma, enigma
+    assert_equal ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "], enigma.alphabet
   end
 
   def test_generate_random_key
