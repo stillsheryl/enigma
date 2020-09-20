@@ -24,6 +24,13 @@ class EnigmaTest < MiniTest::Test
     assert_equal "180920", enigma.todays_date_to_string
   end
 
+  def test_find_letter_index
+    enigma = Enigma.new()
+
+    assert_equal 18, enigma.find_letter_index("s")
+    assert_equal 1, enigma.find_letter_index("b")
+  end
+
   def test_encrypt
     enigma = Enigma.new
 
