@@ -23,7 +23,7 @@ class KeyGeneratorTest < MiniTest::Test
     assert_equal [2, 4, 0, 0], key_generator.calculate_offset_from_date("080820")
   end
 
-  def test_calculate_final_shifts
+  def test_final_shifts
     key_generator = KeyGenerator.new("04523", "080820")
     key_generator.key_shift("04523")
     key_generator.calculate_offset_from_date("080820")
@@ -44,6 +44,15 @@ class KeyGeneratorTest < MiniTest::Test
     key_generator.final_shifts("04523", "080820")
 
     assert_equal [["g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " ", "a", "b", "c", "d", "e", "f"], ["w", "x", "y", "z", " ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v"], ["z", " ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y"],["x", "y", "z", " ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w"]], key_generator.alphabets_for_encoding("04523", "080820")
+  end
+
+  def test_alphabets_for_decoding
+    key_generator = KeyGenerator.new("04523", "080820")
+    key_generator.key_shift("04523")
+    key_generator.calculate_offset_from_date("080820")
+    key_generator.final_shifts("04523", "080820")
+
+    assert_equal [["v",  "w",  "x",  "y",  "z",  " ",  "a",  "b",  "c",  "d",  "e",  "f",  "g",  "h",  "i",  "j",  "k",  "l",  "m",  "n",  "o",  "p",  "q",  "r",  "s",  "t",  "u"], ["f",  "g",  "h",  "i",  "j",  "k",  "l",  "m",  "n",  "o",  "p",  "q",  "r",  "s",  "t",  "u",  "v",  "w",  "x",  "y",  "z",  " ",  "a",  "b",  "c",  "d",  "e"], ["c",  "d",  "e",  "f",  "g",  "h",  "i",  "j",  "k",  "l",  "m",  "n",  "o",  "p",  "q",  "r",  "s",  "t",  "u",  "v",  "w",  "x",  "y",  "z",  " ",  "a",  "b"], ["e",  "f",  "g",  "h",  "i",  "j",  "k",  "l",  "m",  "n",  "o",  "p",  "q",  "r",  "s",  "t",  "u",  "v",  "w",  "x",  "y",  "z",  " ",  "a",  "b",  "c",  "d"]], key_generator.alphabets_for_decoding("04523", "080820")
   end
 
   def test_generate_encrypt_key
