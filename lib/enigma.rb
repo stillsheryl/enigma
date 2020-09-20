@@ -1,5 +1,6 @@
 require 'date'
-require_relative 'key_generator.rb'
+require_relative 'encrypt_key.rb'
+require_relative 'decrypt_key.rb'
 
 class Enigma
   attr_reader :alphabet
@@ -21,9 +22,8 @@ class Enigma
   end
 
   def encrypt(message, key = generate_random_key, date =  todays_date_to_string)
-    encryption_info = {}
-    key_value = KeyGenerator.new(key, date)
-    offset_alphabet = key_value.generate_encrypt_key(key, date)
+    encrypt_key = EncryptKey.new(key, date)
+    offset_alphabet = encrypt_key.generate_encrypt_key(key, date)
     spaced_message = message.downcase.split("")
     encrypted_message = []
     spaced_message.each.with_index(0) do |letter, index|
@@ -33,13 +33,12 @@ class Enigma
         encrypted_message << letter
       end
     end
-    encryption_info = {:encryption => encrypted_message.join, :key => key, :date => date}
+    {:encryption => encrypted_message.join, :key => key, :date => date}
   end
 
   def decrypt(ciphertext, key, date = todays_date_to_string)
-    decryption_info = {}
-    key_value = KeyGenerator.new(key, date)
-    offset_alphabet = key_value.generate_decrypt_key(key, date)
+    decrypt_key = DecryptKey.new(key, date)
+    offset_alphabet = decrypt_key.generate_decrypt_key(key, date)
     spaced_message = ciphertext.downcase.split("")
     decrypted_message = []
     spaced_message.each.with_index(0) do |letter, index|
@@ -49,7 +48,7 @@ class Enigma
         decrypted_message << letter
       end
     end
-    decryption_info = {:decryption => decrypted_message.join, :key => key, :date => date}
+    {:decryption => decrypted_message.join, :key => key, :date => date}
   end
 
 end
