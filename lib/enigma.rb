@@ -1,5 +1,6 @@
 require 'date'
-require_relative 'key_generator.rb'
+require_relative 'encrypt_key.rb'
+require_relative 'decrypt_key.rb'
 
 class Enigma
   attr_reader :alphabet
