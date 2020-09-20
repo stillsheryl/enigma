@@ -36,12 +36,17 @@ class Enigma
 
   def decrypt(ciphertext, key, date = todays_date_to_string)
     decryption_info = {}
+    alphabet = ("a".."z").to_a << " "
     key_value = KeyGenerator.new(key, date)
     offset_alphabet = key_value.generate_decrypt_key(key, date)
     spaced_message = ciphertext.downcase.split("")
     decrypted_message = []
     spaced_message.each.with_index(0) do |letter, index|
-      decrypted_message << offset_alphabet[index % 4][find_letter_index(letter)]
+      if alphabet.include?(letter)
+        decrypted_message << offset_alphabet[index % 4][find_letter_index(letter)]
+      else
+        encrypted_message << letter
+      end
     end
     decryption_info = {:decryption => decrypted_message.join, :key => key, :date => date}
   end
