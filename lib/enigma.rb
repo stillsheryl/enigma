@@ -45,7 +45,7 @@ class Enigma
       if alphabet.include?(letter)
         decrypted_message << offset_alphabet[index % 4][find_letter_index(letter)]
       else
-        encrypted_message << letter
+        decrypted_message << letter
       end
     end
     decryption_info = {:decryption => decrypted_message.join, :key => key, :date => date}
