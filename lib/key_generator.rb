@@ -3,9 +3,6 @@ class KeyGenerator
   def initialize(key, date)
     @key = key
     @date = date
-    # @key_shifts = {}
-    # @date_offset = {}
-    # @final_shifts = {}
   end
 
   def key_shift(key)
@@ -28,10 +25,6 @@ class KeyGenerator
     final_shifts = [a, b, c, d]
   end
 
-  # def final_shifts_array
-  #   [@final_shifts[:A], @final_shifts[:B], @final_shifts[:C], @final_shifts[:D]]
-  # end
-
   def alphabet(shift_by)
     alphabet = ("a".."z").to_a << " "
     alphabet.rotate(shift_by)
@@ -45,13 +38,12 @@ class KeyGenerator
   def alphabets_for_decoding(key, date)
     final_shift = final_shifts(key, date)
     negative_shift = final_shift.map do |shift|
-      # require "pry"; binding.pry
       shift * -1
     end
     [alphabet(negative_shift[0]), alphabet(negative_shift[1]), alphabet(negative_shift[2]), alphabet(negative_shift[3])]
   end
 
-  def generate_key(key, date)
+  def generate_encrypt_key(key, date)
     key_shift(key)
     calculate_offset_from_date(date)
     alphabets_for_encoding(key, date)
@@ -60,10 +52,6 @@ class KeyGenerator
   def generate_decrypt_key(key, date)
     key_shift(key)
     calculate_offset_from_date(date)
-    # final_shift = final_shifts(key, date)
-    # negative_shift = final_shift.map do |shift|
-    #   shift * -1
-    # end
     alphabets_for_decoding(key, date)
   end
 

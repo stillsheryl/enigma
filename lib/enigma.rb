@@ -20,7 +20,7 @@ class Enigma
   def encrypt(message, key = generate_random_key, date =  todays_date_to_string)
     encryption_info = {}
     key_value = KeyGenerator.new(key, date)
-    offset_alphabet = key_value.generate_key(key, date)
+    offset_alphabet = key_value.generate_encrypt_key(key, date)
     spaced_message = message.downcase.split("")
     encrypted_message = []
     spaced_message.each.with_index(0) do |letter, index|
