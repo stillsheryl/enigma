@@ -1,9 +1,4 @@
-class KeyGenerator
-  attr_reader :key, :date
-  def initialize(key, date)
-    @key = key
-    @date = date
-  end
+module KeyGenerator
 
   def key_shift(key)
     key_shifts = [key[0..1].to_i, key[1..2].to_i, key[2..3].to_i, key[3..4].to_i]

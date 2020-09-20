@@ -1,8 +1,11 @@
 require './lib/key_generator'
 
-class EncryptKey < KeyGenerator
+class EncryptKey
+  include KeyGenerator
+  attr_reader :key, :date
   def initialize(key, date)
-    super(key, date)
+    @key = key
+    @date = date
   end
 
   def alphabets_for_encoding(key, date)
