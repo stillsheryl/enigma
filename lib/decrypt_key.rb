@@ -13,4 +13,10 @@ class DecryptKey < KeyGenerator
     [alphabet(negative_shift[0]), alphabet(negative_shift[1]), alphabet(negative_shift[2]), alphabet(negative_shift[3])]
   end
 
+  def generate_decrypt_key(key, date)
+    key_shift(key)
+    calculate_offset_from_date(date)
+    alphabets_for_decoding(key, date)
+  end
+
 end
