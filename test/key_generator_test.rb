@@ -1,5 +1,4 @@
 require_relative 'test_helper'
-require 'mocha/minitest'
 
 class KeyGeneratorTest < MiniTest::Test
 
