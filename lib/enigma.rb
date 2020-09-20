@@ -22,8 +22,8 @@ class Enigma
 
   def encrypt(message, key = generate_random_key, date =  todays_date_to_string)
     encryption_info = {}
-    key_value = KeyGenerator.new(key, date)
-    offset_alphabet = key_value.generate_encrypt_key(key, date)
+    encrypt_key = EncryptKey.new(key, date)
+    offset_alphabet = encrypt_key.generate_encrypt_key(key, date)
     spaced_message = message.downcase.split("")
     encrypted_message = []
     spaced_message.each.with_index(0) do |letter, index|
@@ -38,8 +38,8 @@ class Enigma
 
   def decrypt(ciphertext, key, date = todays_date_to_string)
     decryption_info = {}
-    key_value = KeyGenerator.new(key, date)
-    offset_alphabet = key_value.generate_decrypt_key(key, date)
+    decrypt_key = DecryptKey.new(key, date)
+    offset_alphabet = decrypt_key.generate_decrypt_key(key, date)
     spaced_message = ciphertext.downcase.split("")
     decrypted_message = []
     spaced_message.each.with_index(0) do |letter, index|
