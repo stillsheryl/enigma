@@ -50,6 +50,18 @@ class EnigmaTest < MiniTest::Test
     assert_equal expected2, enigma.encrypt("hello world!", "02715", "040895")
   end
 
+  def test_encrypt_without_optional_arguments
+    enigma = Enigma.new
+    enigma.stubs(:generate_random_key).returns("04523")
+    enigma.stubs(:todays_date_to_string).returns("080820")
+    expected = {
+              encryption: "yccndg",
+              key: "04523",
+              date: "080820"
+            }
+    assert_equal expected, enigma.encrypt("sheryl")
+  end
+
   def test_decrypt
     enigma = Enigma.new
 
@@ -65,6 +77,18 @@ class EnigmaTest < MiniTest::Test
               date: "080820"
             }
     assert_equal expected2, enigma.decrypt("yccndg", "04523", "080820")
+  end
+
+  def test_decrypt_without_optional_arguments
+    enigma = Enigma.new
+    enigma.stubs(:generate_random_key).returns("04523")
+    enigma.stubs(:todays_date_to_string).returns("080820")
+    expected = {
+              decryption: "sheryl",
+              key: "04523",
+              date: "080820"
+            }
+    assert_equal expected, enigma.decrypt("yccndg", "04523")
   end
 
   def test_crack
