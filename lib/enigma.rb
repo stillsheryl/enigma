@@ -26,9 +26,11 @@ class Enigma
     offset_alphabet = encrypt_key.generate_encrypt_key(key, date)
     spaced_message = message.downcase.split("")
     encrypted_message = []
-    spaced_message.each.with_index(0) do |letter, index|
+    index = 0
+    spaced_message.each do |letter|
       if @alphabet.include?(letter)
         encrypted_message << offset_alphabet[index % 4][find_letter_index(letter)]
+        index += 1
       else
         encrypted_message << letter
       end
@@ -41,9 +43,11 @@ class Enigma
     offset_alphabet = decrypt_key.generate_decrypt_key(key, date)
     spaced_message = ciphertext.downcase.split("")
     decrypted_message = []
-    spaced_message.each.with_index(0) do |letter, index|
+    index = 0
+    spaced_message.each do |letter|
       if @alphabet.include?(letter)
         decrypted_message << offset_alphabet[index % 4][find_letter_index(letter)]
+        index += 1
       else
         decrypted_message << letter
       end
