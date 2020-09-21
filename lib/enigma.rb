@@ -26,12 +26,16 @@ class Enigma
     offset_alphabet = encrypt_key.generate_encrypt_key(key, date)
     spaced_message = message.downcase.split("")
     encrypted_message = []
-    spaced_message.each.with_index(0) do |letter, index|
+    index = 0
+    until encrypted_message.length == message.length
+    spaced_message.each do |letter|
       if @alphabet.include?(letter)
         encrypted_message << offset_alphabet[index % 4][find_letter_index(letter)]
+        index += 1
       else
         encrypted_message << letter
       end
+    end
     end
     {:encryption => encrypted_message.join, :key => key, :date => date}
   end
