@@ -56,18 +56,18 @@ class Enigma
   end
 
   def crack(ciphertext, date = todays_date_to_string)
-    key = nil
+    cracked_key = nil
     decryption = nil
     possible_codes = (0..99999).map {|n| "%05d" % n}
     possible_codes.each do |number|
       message = decrypt(ciphertext, number, date)
       if message[:decryption][-4..-1] == " end"
-        key = number
         decryption = message[:decryption]
+        cracked_key = number
         break
       end
     end
-    {:decryption => decryption, :date => date, :key => key}
+    {:decryption => decryption, :date => date, :key => cracked_key}
   end
 
 end
