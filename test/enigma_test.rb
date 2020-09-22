@@ -32,6 +32,15 @@ class EnigmaTest < MiniTest::Test
     assert_equal 1, enigma.find_letter_index("b")
   end
 
+  def test_translate_message
+    enigma = Enigma.new()
+    encrypt_key = EncryptKey.new("04523", "080820")
+
+    spaced_message = ["s", "h", "*", "e", "r", "y", "l"]
+    offset_alphabet = encrypt_key.generate_encrypt_key("04523", "080820")
+    assert_equal "yc*cndg", enigma.translate_message(spaced_message, offset_alphabet)
+  end
+
   def test_encrypt
     enigma = Enigma.new
 

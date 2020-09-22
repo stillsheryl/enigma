@@ -6,9 +6,8 @@ incoming_message = handle.read.to_s.chomp
 
 handle.close
 
-key_date = ARGV
 enigma = Enigma.new
-translated = enigma.decrypt(incoming_message, key_date[2], key_date[3])
+translated = enigma.decrypt(incoming_message, ARGV[2], ARGV[3])
 
 writer = File.open(ARGV[1], "w")
 

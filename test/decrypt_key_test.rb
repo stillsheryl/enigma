@@ -42,15 +42,6 @@ class DecryptKeyTest < MiniTest::Test
     assert_equal ["g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " ", "a", "b", "c", "d", "e", "f"], decrypt_key.alphabet(6)
   end
 
-  def test_alphabets_for_decoding
-    decrypt_key = DecryptKey.new("04523", "080820")
-    decrypt_key.key_shift("04523")
-    decrypt_key.calculate_offset_from_date("080820")
-    decrypt_key.final_shifts("04523", "080820")
-
-    assert_equal [["v",  "w",  "x",  "y",  "z",  " ",  "a",  "b",  "c",  "d",  "e",  "f",  "g",  "h",  "i",  "j",  "k",  "l",  "m",  "n",  "o",  "p",  "q",  "r",  "s",  "t",  "u"], ["f",  "g",  "h",  "i",  "j",  "k",  "l",  "m",  "n",  "o",  "p",  "q",  "r",  "s",  "t",  "u",  "v",  "w",  "x",  "y",  "z",  " ",  "a",  "b",  "c",  "d",  "e"], ["c",  "d",  "e",  "f",  "g",  "h",  "i",  "j",  "k",  "l",  "m",  "n",  "o",  "p",  "q",  "r",  "s",  "t",  "u",  "v",  "w",  "x",  "y",  "z",  " ",  "a",  "b"], ["e",  "f",  "g",  "h",  "i",  "j",  "k",  "l",  "m",  "n",  "o",  "p",  "q",  "r",  "s",  "t",  "u",  "v",  "w",  "x",  "y",  "z",  " ",  "a",  "b",  "c",  "d"]], decrypt_key.alphabets_for_decoding("04523", "080820")
-  end
-
   def test_generate_decrypt_key
     decrypt_key = DecryptKey.new("04523", "080820")
 
